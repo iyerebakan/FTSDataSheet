@@ -1,0 +1,32 @@
+﻿@model UserForLoginDto
+
+@{
+    ViewBag.PageId = "extr-page";
+    ViewBag.PageClass = "animated fadeInDown";
+}
+
+
+<div id="content" class="container">
+    <div class="row">
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-lg-offset-3">
+            <div class="well no-padding">
+                <form class="smart-form client-form" id="login-form" asp-action="AdminLogin" asp-controller="Auth">
+                    <header>
+                        YKK FTS Kullanıcı Girişi
+                        <div class="pull-right" role="">
+                            <a href="@Url.Action("login", "auth")" class="btn btn-primary">Portal Giriş</a>
+                        </div>
+                    </header>
+                    @Html.AntiForgeryToken()
+                    @Html.Partial("_LoginPage.cshtml", Model)
+
+                 
+                </form>
+            </div>
+            @{ Html.RenderPartial("_SocialMedia.cshtml"); }
+        </div>
+    </div>
+</div>
+
+

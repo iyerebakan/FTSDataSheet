@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewData["Title"] = "DataSheetList";
+}
+
+
+<div id="content">
+    <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="row">
+            <!-- NEW WIDGET START -->
+            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-1" data-widget-editbutton="false" data-widget-deletebutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                        <h2>Data Sheet Talep Listesi </h2>
+                    </header>
+
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+                            <table id="dtDataSheetList" class="table table-striped table-bordered" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th style="width:2%"></th>
+                                        <th class="hasinput" style="width:7%">
+                                            <input type="text" class="form-control" />
+                                        </th>
+                                        <th class="hasinput" style="width:7%">
+                                            <input type="text" class="form-control" />
+                                        </th>
+                                        <th class="hasinput" style="width:15%">
+                                            <input class="form-control" type="text">
+                                        </th>
+                                        <th class="hasinput" style="width:10%">
+                                            <input class="form-control" type="text">
+                                        </th>
+                                        <th class="hasinput" style="width:7%">
+                                            <input class="form-control" type="text">
+                                        </th>
+                                        <th class="hasinput" style="width:10%">
+                                            <input class="form-control" type="text">
+                                        </th>
+                                        <th class="hasinput">
+                                            <input id="dateselect_filter1" type="text" class="form-control datepicker" data-dateformat="dd/mm/yy">
+                                        </th>
+                                        <th class="hasinput">
+                                            <input id="dateselect_filter2" type="text" class="form-control datepicker" data-dateformat="dd/mm/yy">
+                                        </th>
+                                        <th class="hasinput" style="width:10%">
+                                            <input class="form-control" type="text">
+                                        </th>
+                                        <th class="hasinput" style="width:10%">
+                                            <input class="form-control" type="text">
+                                        </th>
+                                        <th class="hasinput" style="width:7%">
+                                            <input class="form-control" type="text">
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th data-class="expand"></th>
+                                        <th data-class="expand">Datasheet No</th>
+                                        <th data-class="expand">Firma Adı</th>
+                                        <th data-class="expand">Model No</th>
+                                        <th data-class="expand">Departman</th>
+                                        <th data-class="expand">Ürün</th>
+                                        <th data-class="expand">Durum</th>
+                                        <th data-class="expand">Başlangıç Tarihi</th>
+                                        <th data-class="expand">Çıkış Tarihi</th>
+                                        <th data-class="expand">Yaratan</th>
+                                        <th data-class="expand">Ana Müşteri</th>
+                                        <th data-class="expand">Test Sonucu</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+
+                    <!-- end widget div -->
+                </div>
+
+            </article>
+            <!-- WIDGET END -->
+        </div>
+        <!-- end row -->
+        <!-- end row -->
+    </section>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        Projen.Client.UI.getDatatable(
+            datatableId = "dtDataSheetList",
+            tablet = 1024,
+            phone = 480,
+            searchButton = true,
+            addnewrowButton = @Json.Serialize(ViewBag.addNewbutton),
+            newrecurl = "/datasheet/0",
+            showhideButton = "",
+            serverside = true,
+            ajax = "/DataSheet/DataSheetListDataTable",
+            columns = [
+                {
+                    "name": "Id",
+                    'render': function (data) {
+                        return '<a href="' + UrlDuzelt("/datasheet/" + data) + '"  role="button"><span class="glyphicon glyphicon-pencil"></span></a>';
+                    }
+                },
+                { "name": "DataSheetNumber" },
+                { "name": "CustomerName" },
+                { "name": "SampleNumber" },
+                { "name": "Department" },
+                { "name": "YKKProductCode1" },
+                { "name": "Status" },
+                { "name": "StartDate" },
+                { "name": "EndDate" },
+                { "name": "FTSUserName" },
+                { "name": "MainCustomer" },
+                { "name": "TestResult" }
+            ],
+            function (row, data, index) {
+                if (data[6] == "Gönderilmedi") {
+                    $('td', row).css('background-color', '#FF9AA2');
+                } else if (data[6] == "Süreç Başladı") {
+                    $('td', row).css('background-color', '#C7CEEA');
+                } else if (data[6] == "Tamamlandı") {
+                    $('td', row).css('background-color', '#B5EAD7');
+                }
+            }
+        );
+    });
+</script>
+

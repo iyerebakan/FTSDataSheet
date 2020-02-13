@@ -1,0 +1,11 @@
+C:\Users\ibrahimy\Desktop\FTSDataSheet\Entities\bin\Release\netstandard2.1\Entities.deps.json
+C:\Users\ibrahimy\Desktop\FTSDataSheet\Entities\bin\Release\netstandard2.1\Entities.dll
+C:\Users\ibrahimy\Desktop\FTSDataSheet\Entities\bin\Release\netstandard2.1\Entities.pdb
+C:\Users\ibrahimy\Desktop\FTSDataSheet\Entities\bin\Release\netstandard2.1\Core.dll
+C:\Users\ibrahimy\Desktop\FTSDataSheet\Entities\bin\Release\netstandard2.1\Core.pdb
+C:\Users\ibrahimy\Desktop\FTSDataSheet\Entities\obj\Release\netstandard2.1\Entities.csprojAssemblyReference.cache
+C:\Users\ibrahimy\Desktop\FTSDataSheet\Entities\obj\Release\netstandard2.1\Entities.AssemblyInfoInputs.cache
+C:\Users\ibrahimy\Desktop\FTSDataSheet\Entities\obj\Release\netstandard2.1\Entities.AssemblyInfo.cs
+C:\Users\ibrahimy\Desktop\FTSDataSheet\Entities\obj\Release\netstandard2.1\Entities.csproj.CopyComplete
+C:\Users\ibrahimy\Desktop\FTSDataSheet\Entities\obj\Release\netstandard2.1\Entities.dll
+C:\Users\ibrahimy\Desktop\FTSDataSheet\Entities\obj\Release\netstandard2.1\Entities.pdb

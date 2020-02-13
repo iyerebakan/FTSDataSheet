@@ -1,0 +1,8 @@
+C:\Users\ibrahimy\Desktop\FTSDataSheet\MailSync\bin\Release\netstandard2.1\MailSync.deps.json
+C:\Users\ibrahimy\Desktop\FTSDataSheet\MailSync\bin\Release\netstandard2.1\MailSync.dll
+C:\Users\ibrahimy\Desktop\FTSDataSheet\MailSync\bin\Release\netstandard2.1\MailSync.pdb
+C:\Users\ibrahimy\Desktop\FTSDataSheet\MailSync\obj\Release\netstandard2.1\MailSync.csprojAssemblyReference.cache
+C:\Users\ibrahimy\Desktop\FTSDataSheet\MailSync\obj\Release\netstandard2.1\MailSync.AssemblyInfoInputs.cache
+C:\Users\ibrahimy\Desktop\FTSDataSheet\MailSync\obj\Release\netstandard2.1\MailSync.AssemblyInfo.cs
+C:\Users\ibrahimy\Desktop\FTSDataSheet\MailSync\obj\Release\netstandard2.1\MailSync.dll
+C:\Users\ibrahimy\Desktop\FTSDataSheet\MailSync\obj\Release\netstandard2.1\MailSync.pdb

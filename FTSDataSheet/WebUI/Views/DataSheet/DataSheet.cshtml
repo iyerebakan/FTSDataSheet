@@ -1,0 +1,669 @@
+﻿@model DataSheetViewModel
+
+@{
+    ViewData["Title"] = "DataSheet";
+}
+
+@Html.Partial("~/Views/Shared/_Ribbon.cshtml"
+    , new ViewDataDictionary(ViewData) {
+        { "newurl" , string.Format("<a href={0}> Yeni Kayıt </a>","/ftsdatasheet/datasheet/0") },
+        { "listurl" , string.Format("<a href={0} class='stretched-link'> Kayıt Listesine Git </a>","/ftsdatasheet/datasheetlist") }
+    })
+
+<div id="content">
+    <section id="widget-grid" class="">
+        <div class="row">
+
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <div>
+                    <footer>
+                        <ul class="demo-btns pull-right">
+                            @if (Model.CustomerUser == false)
+                            {
+                                <li>
+                                    <button type="button" class="btn btn-primary" onclick="$('#mainform').submit();">
+                                        <i class="fa fa-save"></i> Kaydet
+                                    </button>
+                                </li>
+                            }
+
+                            @if (Model.DataSheet.Id > 0)
+                            {
+                                <li>
+                                    <button class="btn btn-default" id="btnPrint" 
+                                      onclick="Operations.PrintForm(@Model.DataSheet.Id)">
+                                    Yazdır <i class="fa fa-print"></i></button>
+                                </li>
+                            }
+
+                            @if (Model.DataSheet.Id > 0 && Model.DataSheet.Status == 0 && Model.CustomerUser == false)
+                            {
+                                <li>
+                                    <button type="button" class="btn btn-success"
+                                            onclick="Operations.StartEndProcess(1);">
+                                        <i class="fa fa-save"></i> Süreci Başlat
+                                    </button>
+                                </li>
+                            }
+
+                            @if (Model.DataSheet.Id > 0 && Model.DataSheet.Status == 1 && Model.CustomerUser == false)
+                            {
+                                <li>
+                                    <button type="button" class="btn btn-danger"
+                                            onclick="Operations.StartEndProcess(2);">
+                                        <i class="fa fa-save"></i> Süreci Bitir
+                                    </button>
+                                </li>
+                            }
+
+                            @if (Model.DataSheet.Id > 0 && Model.CustomerUser == false)
+                            {
+                                <li>
+                                    <button class="btn btn-danger" id="btnDeleteRow">Sil <i class="fa fa-gear"></i></button>
+                                </li>
+                            }
+                        </ul>
+                    </footer>
+                </div>
+            </article>
+
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-8" data-widget-editbutton="false" data-widget-custombutton="false"
+                     data-widget-deletebutton="false" data-widget-colorbutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Data Sheet Talep Formu</h2>
+                        @if (Model.DataSheet.Id > 0)
+                        {
+                            <div class="widget-toolbar">
+                                <h2>Datasheet No : @Model.DataSheet.DataSheetNumber</h2>
+                            </div>
+                        }
+
+                    </header>
+                    <div>
+                        <div class="jarviswidget-editbox">
+                            <p class="lead">@Html.ValidationMessage("ValidationException")</p>
+                        </div>
+                        <div class="widget-body no-padding">
+                            <form asp-action="AddOrUpdateDataSheet" asp-controller="DataSheet" method="post" id="mainform" class="smart-form">
+                                <fieldset>
+                                    <div class="row">
+                                        <section class="col col-lg-3">
+                                            <label class="label">Firma Adı</label>
+                                            <label class="input">
+                                                @if (Model.CustomerUser)
+                                                {
+                                                    @Html.TextBoxFor(m => m.CustomerName, new { @disabled = true })
+                                                    @Html.HiddenFor(m => m.DataSheet.CustomerId, new { id = "txtCustomerId" })
+                                                }
+                                                else
+                                                {
+                                                    @Html.DropDownListFor(m => m.DataSheet.CustomerId, new SelectList(Model.Customers, "Id", "DisplayName"), new { @class = "form-control", style = "width:100%", id = "txtCustomerId" })
+                                                    @Html.ValidationMessageFor(model => model.DataSheet.CustomerId, "", new { @class = "text-danger" })
+                                                }
+
+                                            </label>
+                                        </section>
+
+                                        <section class="col col-lg-3">
+                                            <label class="label">Departman</label>
+                                            <div class="inline-group">
+                                                <label class="radio">
+                                                    @Html.RadioButtonFor(m => m.DataSheet.Department, "1", true)
+                                                    <i></i>Bay
+                                                </label>
+                                                <label class="radio">
+                                                    @Html.RadioButtonFor(m => m.DataSheet.Department, "2", true)
+                                                    <i></i>Bayan
+                                                </label>
+                                                <label class="radio">
+                                                    @Html.RadioButtonFor(m => m.DataSheet.Department, "3", true)
+                                                    <i></i>Çocuk
+                                                </label>
+                                            </div>
+                                        </section>
+
+                                        <section class="col col-lg-6">
+                                            <label class="label">Firma İlgili Kişi</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.DataSheet.Contact)
+                                                @Html.ValidationMessageFor(model => model.DataSheet.Contact, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+
+                                        @Html.HiddenFor(m => m.DataSheet.Id, new { id = "txtDataSheetId" })
+                                        @Html.HiddenFor(m => m.DataSheet.Status, new { id = "txtStatus" })
+                                        @Html.HiddenFor(m => m.DataSheet.CreateUser, new { id = "txtCreateUser" })
+                                        @Html.HiddenFor(m => m.DataSheet.CreateDate, new { id = "txtCreateDate" })
+                                        @Html.HiddenFor(m => m.DataSheet.DataSheetNumber, new { id = "txtDataSheetNumber" })
+                                        @*@Html.HiddenFor(m => m.DataSheet.StartDate, new { id = "txtStartDate" })*@
+                                        @*@Html.HiddenFor(m => m.DataSheet.EndDate, new { id = "txtEndDate" })*@
+                                        @Html.HiddenFor(m => m.DataSheet.UpdateDate, new { id = "txtUpdateDate" })
+                                        @Html.HiddenFor(m => m.DataSheet.FTSUserId, new { id = "txtFTSUserId" })
+                                    </div>
+
+                                    <div class="row">
+                                        <section class="col col-lg-6">
+                                            <label class="label">Ana Müşteri</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.DataSheet.MainCustomer)
+                                                @Html.ValidationMessageFor(model => model.DataSheet.MainCustomer, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        <section class="col col-lg-3">
+                                            <label class="label">Telefon No</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.DataSheet.TelephoneNumber)
+                                                @Html.ValidationMessageFor(model => model.DataSheet.TelephoneNumber, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+
+                                        <section class="col col-lg-3">
+                                            <label class="label">Fax No</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.DataSheet.FaxNumber)
+                                                @Html.ValidationMessageFor(model => model.DataSheet.FaxNumber, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <section class="col col-lg-6">
+                                            <label class="label">E-mail Adresi</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.DataSheet.EmailAddress)
+                                                @Html.ValidationMessageFor(model => model.DataSheet.EmailAddress, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+
+                                        <section class="col col-lg-3">
+                                            <label class="label">Giriş Tarihi</label>
+                                            <label class="input">
+                                                <i class="icon-append fa fa-calendar"></i>
+                                                <input type="text" name="DataSheet.StartDate" id="startdate"
+                                                       placeholder="Tarih Seçiniz.">
+                                                        @*@Html.TextBoxFor(m => m.DataSheet.SampleSentDate, "{0:dd/MM/yyyy}", new { @class = "datepicker", id = "datepicker" })
+                                                        @Html.ValidationMessageFor(model => model.DataSheet.SampleSentDate, "", new { @class = "text-danger" })*@
+                                            </label>
+                                        </section>
+
+                                        <section class="col col-lg-3">
+                                            <label class="label">Çıkış Tarihi</label>
+                                            <label class="input">
+                                                <i class="icon-append fa fa-calendar"></i>
+                                                <input type="text" name="DataSheet.EndDate" id="enddate"
+                                                       placeholder="Tarih Seçiniz.">
+                                            </label>
+                                        </section>
+
+                                    </div>
+                                </fieldset>
+
+                                <fieldset>
+                                    <legend>Ürün Bilgiler</legend>
+                                    <div class="row">
+                                        @*<section class="col col-lg-6">
+                                            <label class="label">Ana Müşteri Model Numarası</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.DataSheet.MainCustomerSampleNumber)
+                                                @Html.ValidationMessageFor(model => model.DataSheet.MainCustomerSampleNumber, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>*@
+                                        <section class="col col-lg-6">
+                                            <label class="label">Test Sonucu</label>
+                                            <div class="inline-group">
+                                                <label class="radio">
+                                                    @Html.RadioButtonFor(m => m.DataSheet.TestResult, "1", true)
+                                                    <i></i>Good
+                                                </label>
+                                                <label class="radio">
+                                                    @Html.RadioButtonFor(m => m.DataSheet.TestResult, "0", true)
+                                                    <i></i>No Good
+                                                </label>
+                                            </div>
+                                        </section>
+
+                                        <section class="col col-lg-3">
+                                            <label class="label">Model Numarası</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.DataSheet.SampleNumber)
+                                                @Html.ValidationMessageFor(model => model.DataSheet.SampleNumber, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+
+                                        <section class="col col-lg-3">
+                                            <label class="label">Kumaş Tipi/Cinsi</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.DataSheet.FabricType)
+                                                @Html.ValidationMessageFor(model => model.DataSheet.FabricType, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <section class="col col-lg-6">
+                                            <label class="label">Ana Müşteri İlgili Kişi</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.DataSheet.MainCustomerContact)
+                                                @Html.ValidationMessageFor(model => model.DataSheet.MainCustomerContact, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+
+                                        <section class="col col-lg-3">
+                                            <label class="label">YKK Ürün Kodları 1</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.DataSheet.YKKProductCode1)
+                                                @Html.ValidationMessageFor(model => model.DataSheet.YKKProductCode1, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+
+                                        <section class="col col-lg-3">
+                                            <label class="label">YKK Ürün Kodları 2</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.DataSheet.YKKProductCode2)
+                                                @Html.ValidationMessageFor(model => model.DataSheet.YKKProductCode2, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <div class="row">
+                                        <section class="col col-lg-3">
+                                            <label class="label">Kulanılan Pozisyon 1</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.DataSheet.ProductPosition1)
+                                            </label>
+                                        </section>
+                                        <section class="col col-lg-3">
+                                            <label class="label">Kulanılan Pozisyon 2</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.DataSheet.ProductPosition2)
+                                            </label>
+                                        </section>
+                                        <section class="col col-lg-3">
+                                            <label class="label">Kulanılan Pozisyon 3</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.DataSheet.ProductPosition3)
+                                            </label>
+                                        </section>
+                                        <section class="col col-lg-3">
+                                            <label class="label">Kulanılan Pozisyon 4</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.DataSheet.ProductPosition4)
+                                            </label>
+                                        </section>
+                                    </div>
+
+                                </fieldset>
+                            </form>
+
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>
+
+            @if (Model.DataSheet.Id > 0)
+            {
+                <article class="col-xs 12 col-sm-12 col-md-12 col-lg-6">
+
+                    <div class="jarviswidget jarviswidget-color-teal" id="wid-id-1"
+                         data-widget-editbutton="false" data-widget-custombutton="false"
+                         data-widget-deletebutton="false" data-widget-colorbutton="false">
+                        <header>
+                            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                            <h2>Dosyalar</h2>
+                        </header>
+                        <div>
+                            <div class="jarviswidget-editbox">
+
+                            </div>
+                            <div class="widget-body no-padding">
+                                <form id="order-form" class="smart-form" asp-action="AddFile" asp-controller="File" asp-route-datasheetId="@Model.DataSheet.Id" novalidate="novalidate">
+                                    <header>
+                                        Dosya Yükleme
+                                    </header>
+                                    <fieldset>
+                                        <section class="col col-lg-10 no-padding">
+                                            <label class="input input-file">
+                                                <span class="button">
+                                                    <input id="file" type="file" name="file"
+                                                           onchange="this.parentNode.nextElementSibling.value = document.getElementById('file').files[0].name;">Browse
+                                                </span>
+                                                <input type="text" placeholder="Buradan dosya yükleyebilirsiniz." readonly="">
+                                            </label>
+                                        </section>
+
+                                        <section class="col col-lg-2">
+                                            <button type="button" name="submit" class="btn btn-sm btn-block btn-primary"
+                                                    id="btnAddFile">
+                                                Yükle
+                                            </button>
+                                        </section>
+                                    </fieldset>
+                                    <footer>
+                                        <table class="table table-bordered table-condensed">
+                                            <thead>
+                                                <tr>
+                                                    <th>Tarih</th>
+                                                    <th>Dosya Adı</th>
+                                                    <th>İndir</th>
+                                                    <th>Sil</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (File item in Model.Files.OrderByDescending(k => k.Id))
+                                                {
+                                                    <tr>
+                                                        <th scope="row">@item.FileName</th>
+                                                        <td>
+                                                            @Convert.ToDateTime(item.CreateDate).ToString("dd/MM/yyyy HH:mm")
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-primary" id="btnDownload"
+                                                                    onclick="window.location.href='@Url.Action("DownloadFile","File"
+                                                                                                  ,new { Id=item.Id })'"
+                                                                    target="_blank">
+                                                                <i class="ik ik-download"></i>İndir
+                                                            </button>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-danger"
+                                                                    onclick="Operations.DeleteFileBox(@item.Id)">
+                                                                <i class="ik ik-delete"></i>Sil
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </footer>
+                                </form>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+                <article class="col-sm-12 col-md-12 col-lg-6">
+
+                    <div class="jarviswidget" id="wid-id-10"
+                         data-widget-editbutton="false" data-widget-custombutton="false"
+                         data-widget-deletebutton="false" data-widget-colorbutton="false">
+                        <header>
+                            <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                            <h2>Yorumlar</h2>
+
+                        </header>
+
+                        <div>
+
+                            <div class="jarviswidget-editbox">
+
+                            </div>
+                            <div class="widget-body margin-bottom-10">
+
+                                <form method="post" class="padding-bottom-10" onsubmit="return false;">
+                                    <textarea rows="2" class="form-control" placeholder="Yorum Yazınız." id="txtComment"></textarea>
+                                    <div class="margin-top-10">
+                                        <button type="submit" class="btn btn-sm btn-primary pull-right" id="btnAddComment">
+                                            Yorum Ekle
+                                        </button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            }
+        </div>
+    </section>
+
+</div>
+
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="htmlPDF">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    var Operations = function () {
+        AddFileBox = function () {
+            if (typeof file == 'undefined') {
+                var file = document.getElementById('file');
+                return Projen.Server.UploadAsync(file.files, "/File/AddFile?Id=@Model.DataSheet.Id", function (data) {
+                    if (data != "")
+                        return alert(data);
+
+                    window.location.reload();
+                });
+            } else {
+                if (file.files.length > 0) {
+                    return Projen.Server.UploadAsync(file.files, "/File/AddFile?Id=@Model.DataSheet.Id", function (data) {
+                        if (data != "")
+                            return alert(data);
+
+                        window.location.reload();
+                    });
+                }
+            }
+        },
+        DeleteFileBox = function (Id) {
+            var ans = window.confirm("Dosya silinecek. İşleme devam etmek istiyor musunuz?");
+            if (ans) {
+                Projen.Server.PostAsync("", "/File/DeleteFile?Id=" + Id, function (data) {
+                    if (data != "")
+                        return alert(data);
+
+                    window.location.reload();
+                });
+            }
+        },
+        AddComment = function () {
+            if ($("#txtComment").val()) {
+                return Projen.Server.PostAsync({ DataSheetId:@Model.DataSheet.Id, CommentText: $("#txtComment").val() }, "/Comment/AddComment/", function (data) {
+                    if (data.Message == "")
+                        return alert(data);
+                    else {
+                        Operations.ListComment(data);
+                        $("#txtComment").val('');
+                    }
+
+                });
+            }
+        },
+        ReplyComment = function (Id, textId) {
+            if ($("#txtId" + textId).val() && Id) {
+                return Projen.Server.PostAsync({ DataSheetId:@Model.DataSheet.Id, CommentText: $("#txtId" + textId).val(), CommentId: Id }, "/Comment/AddComment/", function (data) {
+                    if (data.Message == "")
+                        return alert(data);
+                    else {
+                        Operations.ListComment(data);
+                    }
+
+                });
+            }
+        },
+        ListComment = function (data) {
+            $("#wid-id-10 .widget-body .timeline-seperator").remove();
+            $("#wid-id-10 .widget-body .chat-body").remove();
+            data.comments.forEach(function (comm) {
+                var reply = data.replyComments;
+
+                var html = '<div class="timeline-seperator text-center"><span>' + comm.createDate + '</span></div>';
+                html = html + '<div class="chat-body no-padding profile-message">';
+                html = html + "<ul>";
+                html = html + '<li class="message">';
+                html = html + '<img src="../img/avatars/' + comm.logo + '" class="online" alt="user">';
+                html = html + '<span class="message-text">';
+                html = html + '<a href="javascript:void(0);" class="username"> ' + comm.userName;
+                html = html + '<small class="text-muted pull-right ultra-light"></small></a>';
+                html = html + comm.commentText + '</span>';
+                html = html + '<ul class="list-inline font-xs"><li> <a href="javascript:void(0);" class="text-info"></a></li>';
+                html = html + '</ul>';
+                html = html + "</li>";
+
+                var arr = reply.filter(function (e) {
+                    return e.commentId == comm.id;
+                });
+                arr.forEach(function (e) {
+                    html = html + '<li class="message message-reply">';
+                    html = html + '<img src="../img/avatars/' + e.logo + '" class="online" alt="user">';
+                    html = html + '<span class="message-text"> <a href="javascript:void(0);" class="username">' + e.userName + '</a>';
+                    html = html + e.commentText + '</span>';
+                    html = html + '<ul class="list-inline font-xs"> <li> <a href="javascript:void(0);" class="text-muted"></a>';
+                    html = html + '</li></ul>';
+                    if (arr[arr.length - 1] === e) {
+                        //html = html + '<div class="col-md-10"><input class="form-control input-xs" placeholder="Type and enter" type="text" id="txtId' + e.id + '"></div>';
+                        //html = html + '<div class="col-md-2"><button class="btn btn-block btn-xs btn-primary" type="button" onclick="Operations.ReplyComment(' + comm.id + ',' + e.id + ')">Cevapla</button></div></li>';
+                        html = html + '</li><li><div class="input-group wall-comment-reply"><input type="text" class="form-control" id="txtId' + e.id + '" placeholder="Buradan cevap verebilirsiniz...">';
+                        html = html + '<span class="input-group-btn"><button class="btn btn-primary" onclick="Operations.ReplyComment(' + comm.id + ',' + e.id + ')" id="btn-chat"><i class="fa fa-reply"></i> Cevapla</button></span></div></li>';
+                    } else {
+                        html = html + '</li>';
+                    }
+                });
+
+                if (arr.length == 0) {
+                    // html = html + '<li class="message message-reply"><div class="col-md-10"><input class="form-control input-xs" placeholder="Type and enter" type="text" id="txtId' + comm.id + '"></div>';
+                    // html = html + '<div class="col-md-2"><button class="btn btn-block btn-xs btn-primary" type="button" onclick="Operations.ReplyComment(' + comm.id + ',' + comm.id + ')">Cevapla</button></div></li> ';
+                    html = html + '<li><div class="input-group wall-comment-reply"><input type="text" class="form-control" id="txtId' + comm.id + '" placeholder="Buradan cevap verebilirsiniz...">';
+                    html = html + '<span class="input-group-btn"><button class="btn btn-primary" onclick="Operations.ReplyComment(' + comm.id + ',' + comm.id + ')" id="btn-chat"><i class="fa fa-reply"></i> Cevapla</button></span></div></li>';
+                }
+
+                html = html + "</ul>";
+                html = html + "</div>";
+                $("#wid-id-10 .widget-body").append(html);
+                arr = []; reply = [];
+            });
+            if ($("#txtDataSheetId").val()) {
+                if ($("#txtStatus").val() == "2") {
+                    $("article input").prop("disabled", true);
+                    $("article button").not("#btnDownload").not("#btnPrint").remove();
+                }
+            }
+        },
+        GetComments = function () {
+            if ($("#txtDataSheetId").val()) {
+                return Projen.Server.PostAsync("", "/Comment/GetComments?Id=" +@Model.DataSheet.Id, function (data) {
+                    if (data.Message == "")
+                        return alert(data);
+                    else {
+                        Operations.ListComment(data);
+                    }
+
+                });
+            }
+        },
+        StartEndProcess = function (status) {
+            //kontroller buraya eklenecek.
+            return Projen.Server.PostAsync("", "/DataSheet/StartEndDataSheetProcess?Id=@Model.DataSheet.Id&&status=" + status, function (data) {
+                if (data != "")
+                    return alert(data);
+                else {
+                    window.location.reload();
+                }
+
+            });
+        },
+        DeleteDataSheet = function () {
+            var ans = window.confirm("Kayıt silinecek. İşleme devam etmek istiyor musunuz?");
+            if (ans) {
+                Projen.Server.PostAsync({ Id:@Model.DataSheet.Id }, "/DataSheet/DeleteDataSheet", function (e) {
+                    if (e == "")
+                        window.location.href = UrlDuzelt("/datasheetlist");
+                    else
+                        alert(e);
+                });
+            }
+            },
+        PrintForm = function (Id) {
+            Projen.Server.GetAsync("", "/DataSheet/PrintFormPDF?Id=" + Id, function (data) {
+                if (data == "")
+                    return alert("Hata Oluştu..!");
+
+                $("#htmlPDF").html(data);
+                Operations.PrintDiv();
+            });
+        },
+        PrintDiv = function () {
+            var divToPrint = document.getElementById('exampleModalLong');
+            var newWin = window.open('', 'Print-Window');
+            newWin.document.open();
+            newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+            newWin.document.close();
+            setTimeout(function () { newWin.close(); }, 10);
+        }
+        return {
+            AddFileBox: AddFileBox,
+            DeleteFileBox: DeleteFileBox,
+            AddComment: AddComment,
+            ListComment: ListComment,
+            GetComments: GetComments,
+            ReplyComment: ReplyComment,
+            StartEndProcess: StartEndProcess,
+            DeleteDataSheet: DeleteDataSheet,
+            PrintForm: PrintForm,
+            PrintDiv: PrintDiv
+        }
+    }();
+
+    $("#btnAddFile").click(function () {
+        Operations.AddFileBox();
+    });
+
+    $("#btnAddComment").click(function () {
+        Operations.AddComment();
+    });
+
+    $("#btnDeleteRow").click(function () {
+        Operations.DeleteDataSheet();
+    });
+
+    $(document).ready(function () {
+        $.ajaxSetup({ "async": false });
+        Operations.GetComments();
+        if (@Json.Serialize(Model.CustomerUser) == false)
+        {
+            Projen.Client.UI.getSelect2Combobox("txtCustomerId", "/Customer/GetCustomers");
+        }
+
+        $('#startdate').datepicker({
+            dateFormat: 'dd.mm.yy',
+            prevText: '<i class="fa fa-chevron-left"></i>',
+            nextText: '<i class="fa fa-chevron-right"></i>',
+            monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+            dayNamesMin: ["Pa", "Pt", "Sl", "Ça", "Pe", "Cu", "Ct"],
+            firstDay: 1
+        });
+
+        $('#enddate').datepicker({
+            dateFormat: 'dd.mm.yy',
+            prevText: '<i class="fa fa-chevron-left"></i>',
+            nextText: '<i class="fa fa-chevron-right"></i>',
+            monthNames: ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"],
+            dayNamesMin: ["Pa", "Pt", "Sl", "Ça", "Pe", "Cu", "Ct"],
+            firstDay: 1
+        });
+
+        $('#startdate').datepicker("setDate", "@Model.DataSheet.StartDate");
+        $('#enddate').datepicker("setDate","@Model.DataSheet.EndDate");
+
+        $.ajaxSetup({ "async": true });
+    });
+
+</script>

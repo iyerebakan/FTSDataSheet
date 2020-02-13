@@ -1,0 +1,271 @@
+﻿@model CustomerViewModel
+
+@{
+    ViewData["Title"] = "Customer";
+}
+
+@Html.Partial("~/Views/Shared/_Ribbon.cshtml"
+    , new ViewDataDictionary(ViewData) {
+        { "newurl" , string.Format("<a href={0}> Yeni Kayıt </a>","/ftsdatasheet/musteri/0") },
+        { "listurl" , string.Format("<a href={0} class='stretched-link'> Kayıt Listesine Git </a>","/ftsdatasheet/musteriler") }
+    })
+
+<div id="content">
+    <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="row">
+
+            @Html.Partial("~/Views/Shared/_Master.cshtml",
+               new ViewDataDictionary(ViewData) {
+                   { "Id", Model.Customer.Id},
+                   { "url", "/Customer/DeleteCustomer"},
+                   { "returnurl", "/musteriler" },
+               })
+
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-8" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Müşteri Tanımlama</h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                            <p class="lead">@Html.ValidationMessage("ValidationException")</p>
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+                            <form asp-action="AddOrUpdateCustomer" asp-controller="Customer"
+                                  method="post" id="mainform" class="smart-form">
+                                <fieldset>
+                                    <div class="row">
+                                        <section class="col col-lg-3">
+                                            <label class="label">Firma Kodu</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.Customer.CustomerCode, new { @type = "number" })
+                                                @Html.ValidationMessageFor(model => model.Customer.CustomerCode, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        <section class="col col-lg-3">
+                                            <label class="label">Firma Adı</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.Customer.DisplayName)
+                                                @Html.ValidationMessageFor(model => model.Customer.DisplayName, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        <section class="col col-lg-6">
+                                            <label class="label">Ticari Ünvan</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.Customer.CommercialTitle)
+                                                @Html.ValidationMessageFor(model => model.Customer.CommercialTitle, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+
+                                        @Html.HiddenFor(m => m.Customer.Id, new { id = "txtCustomerId" })
+                                    </div>
+
+                                    <div class="row">
+                                        <section class="col col-lg-3">
+                                            <label class="label">Vergi Dairesi</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.Customer.TaxOffice)
+                                                @Html.ValidationMessageFor(model => model.Customer.TaxOffice, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                        <section class="col col-lg-3">
+                                            <label class="label">Vergi No</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.Customer.TaxNumber)
+                                                @Html.ValidationMessageFor(model => model.Customer.TaxNumber, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+
+                                        <section class="col col-lg-3">
+                                            <label class="label">TCKN</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.Customer.Identifier)
+                                                @Html.ValidationMessageFor(model => model.Customer.Identifier, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+
+                                        <section class="col col-lg-3">
+                                            <label class="label">Web</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.Customer.WebAddress)
+                                                @Html.ValidationMessageFor(model => model.Customer.WebAddress, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                    </div>
+                                    <div class="row">
+                                        <section class="col col-lg-3">
+                                            <label class="label">Telefon</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.Customer.TelephoneNumber)
+                                                @Html.ValidationMessageFor(model => model.Customer.TelephoneNumber, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+
+                                        <section class="col col-lg-3">
+                                            <label class="label">Fax</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.Customer.FaxNumber)
+                                                @Html.ValidationMessageFor(model => model.Customer.FaxNumber, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+
+                                        <section class="col col-lg-6">
+                                            <label class="label">Email</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.Customer.EmailAddress)
+                                                @Html.ValidationMessageFor(model => model.Customer.EmailAddress, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                    </div>
+
+                                    <div class="row">
+                                        <section class="col col-lg-6">
+                                            <label class="label">Adres</label>
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.Customer.Address)
+                                            </label>
+                                        </section>
+                                        <section class="col col-2">
+                                            <label class="label">Ülke</label>
+                                            <label class="input">
+                                                @Html.DropDownListFor(m => m.Customer.CountryId, new SelectList(Model.Countries, "Id", "Name"), "",
+                                                        new { @class = "form-control", style = "width:100%", id = "txtCountryId" })
+                                            </label>
+                                        </section>
+                                        <section class="col col-2">
+                                            <label class="label">Şehir</label>
+                                            <label class="input">
+                                                @Html.DropDownListFor(m => m.Customer.CityId, new SelectList(Model.Cities, "Id", "Name"), "",
+                                                        new { @class = "form-control", style = "width:100%", id = "txtCityId" })
+                                            </label>
+                                        </section>
+                                        <section class="col col-2">
+                                            <label class="label">İlçe</label>
+                                            <label class="input">
+                                                @Html.DropDownListFor(m => m.Customer.DistrictId, new SelectList(Model.Districts, "Id", "Name"), "",
+                                                        new { @class = "form-control", style = "width:100%", id = "txtDistrictId" })
+                                            </label>
+                                        </section>
+                                    </div>
+
+                                </fieldset>
+                            </form>
+
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>
+
+        </div>
+        <!-- end row -->
+    </section>
+
+    @if (Model.Customer.Id > 0)
+    {
+        <div class="row">
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <div class="jarviswidget well" id="wid-id-3" data-widget-colorbutton="false" data-widget-editbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-sortable="false">
+
+                    <div>
+                        <div class="jarviswidget-editbox">
+                        </div>
+                        <div class="widget-body">
+                            <ul id="myTab1" class="nav nav-tabs bordered">
+                                <li class="active">
+                                    <a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-pencil"></i>Kullanıcılar</a>
+                                </li>
+                            </ul>
+                            <div id="myTabContent1" class="tab-content padding-10">
+                                <div class="tab-pane fade in active" id="s1">
+                                    <div id="content">
+                                        <section id="widget-grid" class="">
+                                            <div class="row">
+                                                <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <table id="jqCustomerUsers"></table>
+                                                    <div id="pjqCustomerUsers"></div>
+                                                </article>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    }
+
+</div>
+
+<script type="text/javascript">
+
+    var Islemler = function () {
+        Cities = function (countryId) {
+            Projen.Client.UI.getSelect2Combobox("txtCityId", "/Address/GetCities?countryId=" + countryId);
+        },
+        Districts = function (cityId) {
+            Projen.Client.UI.getSelect2Combobox("txtDistrictId", "/Address/GetDistricts?cityId=" + cityId);
+        }
+
+        return {
+            Cities: Cities,
+            Districts: Districts
+        }
+
+    }();
+
+    $(document).ready(function () {
+        Projen.Client.UI.getJqGrid("jqCustomerUsers", "pjqCustomerUsers", "/User/UserListByCustomer?Id=" + $("#txtCustomerId").val(), ['Id', 'Adı', 'Soyadı', 'Email', 'Şifre', 'CustomerId', "<button class='btn btn-xs btn-success' id='addjqgrid' style='margin-right:5px' onclick=\"Projen.Client.UI.getJqGridNewRow('jqCustomerUsers');\"><i class='fa fa-plus'></i> Yeni Kayıt</button>"],
+            [{ key: true, hidden: true, name: 'Id', index: 'Id', editable: true },
+            { name: 'FirstName', index: 'FirstName', editable: true },
+            { name: 'LastName', index: 'LastName', editable: true },
+            { name: 'Email', index: 'Email', editable: true },
+            { name: 'Password', index: 'Password', editable: true },
+            {
+                name: 'CustomerId', index: 'CustomerId', hidden: true, editable: true, editoptions: {
+                    defaultValue: $("#txtCustomerId").val()
+                }
+            },
+            { name: 'act', index: 'act', sortable: false }
+            ], "/User/AddOrUpdateUserAjax", "", false, "/User/DeleteUserAjax");
+
+        Projen.Client.UI.getSelect2Combobox("txtCountryId", "/Address/GetCountries");
+
+        if ($("#txtCountryId").val()) {
+            Islemler.Cities($("#txtCountryId").val());
+        } else {
+            Projen.Client.UI.getSelect2Combobox("txtCityId", "/Address/GetCities");
+        }
+
+        if ($("#txtCityId").val()) {
+            Islemler.Districts($("#txtCityId").val());
+        } else {
+            Projen.Client.UI.getSelect2Combobox("txtDistrictId", "/Address/GetDistricts");
+        }
+
+
+        $("#txtCountryId").bind("change", function () {
+            $("#txtCityId").select2("val", "");
+            $("#txtDistrictId").select2("val", "");
+            Islemler.Cities($("#txtCountryId").val());
+        });
+
+        $("#txtCityId").bind("change", function () {
+            $("#txtDistrictId").select2("val", "");
+            Islemler.Districts($("#txtCityId").val());
+        });
+    });
+</script>

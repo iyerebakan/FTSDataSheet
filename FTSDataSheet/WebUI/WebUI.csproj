@@ -1,0 +1,43 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+    <AspNetCoreModuleName>AspNetCoreModuleV2</AspNetCoreModuleName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Filter\" />
+    <Folder Include="Files\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\DataSheetForm\fonts\LiberationSans-Bold_h.woff" />
+    <None Include="wwwroot\DataSheetForm\fonts\LiberationSans_m.woff" />
+    <None Include="wwwroot\DataSheetForm\fonts\LiberationSerif-Bold_c.woff" />
+    <None Include="wwwroot\DataSheetForm\index.html" />
+    <None Include="wwwroot\DataSheetForm\svg\bay.svg" />
+    <None Include="wwwroot\DataSheetForm\svg\bayan.svg" />
+    <None Include="wwwroot\DataSheetForm\svg\cocuk.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="8.5.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
+    <PackageReference Include="Microsoft.IdentityModel" Version="7.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj" />
+    <ProjectReference Include="..\MailSync\MailSync.csproj" />
+  </ItemGroup>
+
+</Project>

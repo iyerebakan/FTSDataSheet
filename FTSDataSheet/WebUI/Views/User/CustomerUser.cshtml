@@ -1,0 +1,148 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "User";
+}
+
+@Html.Partial("~/Views/Shared/_Ribbon.cshtml"
+    , new ViewDataDictionary(ViewData) {
+        { "newurl" , string.Format("<a href={0}> Yeni Kayıt </a>","/ftsdatasheet/kullanici/0") },
+        { "listurl" , string.Format("<a href={0} class='stretched-link'> Kayıt Listesine Git </a>","/ftsdatasheet/kullanicilar") }
+    })
+
+<div id="content">
+    <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="row">
+
+            @Html.Partial("~/Views/Shared/_Master.cshtml",
+               new ViewDataDictionary(ViewData) {
+                   { "Id", Model.User.Id},
+                   { "url", "/User/DeleteUser"},
+                   { "returnurl", "/kullanicilar" },
+               })
+
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <!-- Widget ID (each widget will need unique ID)-->
+                <div class="jarviswidget" id="wid-id-8" data-widget-editbutton="false" data-widget-custombutton="false">
+                    <header>
+                        <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                        <h2>Kullanıcı Tanımlama</h2>
+                    </header>
+                    <!-- widget div-->
+                    <div>
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                            <p class="lead">@Html.ValidationMessage("ValidationException")</p>
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+                        <div class="widget-body no-padding">
+                            <form asp-action="AddOrUpdateUser" asp-controller="User" method="post" id="mainform" class="smart-form">
+
+                                <fieldset>
+                                    <div class="row">
+                                        <label class="label col col-2">Email</label>
+                                        <section class="col col-4">
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.User.Email, new { type = "email", placeholder = "example@mail.com" })
+                                                @Html.ValidationMessageFor(model => model.User.Email, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+
+                                        <label class="label col col-2">Şifre</label>
+                                        <section class="col col-4">
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.User.Password, new { type = "text", required = true })
+                                            </label>
+                                        </section>
+
+                                        @Html.HiddenFor(m => m.User.Id, new { id = "txtUserId" })
+                                        <input type="hidden" value="1" name="User.RoleId" />
+                                        
+                                    </div>
+
+                                    <div class="row">
+                                        <label class="label col col-2">Kullanıcı Adı</label>
+                                        <section class="col col-4">
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.User.FirstName)
+                                                @Html.ValidationMessageFor(model => model.User.FirstName, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+
+                                        <label class="label col col-2">Kullanıcı Soyadı</label>
+                                        <section class="col col-4">
+                                            <label class="input">
+                                                @Html.TextBoxFor(m => m.User.LastName)
+                                                @Html.ValidationMessageFor(model => model.User.LastName, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+                                    </div>
+
+                                    <div class="row">
+                                        <label class="label col col-2"></label>
+                                        <section class="col col-4">
+                                            <label class="checkbox">
+                                                @Html.CheckBoxFor(m => m.User.Status, new { type = "checkbox" })
+                                                <i></i>Aktif
+                                            </label>
+                                        </section>
+
+                                        <label class="label col col-2">Müşteri</label>
+                                        <section class="col col-4">
+                                            <label class="input">
+                                                @Html.DropDownListFor(m => m.User.CustomerId, new SelectList(Model.Customers, "Id", "DisplayName"), new { @class = "form-control", style = "width:100%", id = "txtCustomerId" })
+                                                @Html.ValidationMessageFor(model => model.User.CustomerId, "", new { @class = "text-danger" })
+                                            </label>
+                                        </section>
+
+                                    </div>
+
+                                    @if (Model.User.Id > 0)
+                                    {
+                                        <div class="row">
+                                            <section class="col col-12 pull-right">
+                                                <button class="btn btn-sm btn-success" type="button" onclick="Works.SendEmail()">E-posta Gönder</button>
+                                            </section>
+                                        </div>
+                                    }
+                                </fieldset>
+
+                            </form>
+
+                        </div>
+                        <!-- end widget content -->
+                    </div>
+                    <!-- end widget div -->
+                </div>
+                <!-- end widget -->
+            </article>
+
+
+
+        </div>
+        <!-- end row -->
+    </section>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        Projen.Client.UI.getSelect2Combobox("txtCustomerId", "/Customer/GetCustomers");
+    });
+
+    var Works = function () {
+        SendEmail = function () {
+            return Projen.Server.PostAsync("", "/User/SendUserMail?Id=@Model.User.Id", function (data) {
+                alert(data);
+                window.location.reload();
+            });
+        }
+
+        return {
+            SendEmail: SendEmail
+        }
+    }();
+
+</script>

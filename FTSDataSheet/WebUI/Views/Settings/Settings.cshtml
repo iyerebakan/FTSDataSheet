@@ -1,0 +1,131 @@
+﻿@model SettingsViewModel
+
+@{
+    ViewData["Title"] = "Settings";
+}
+
+<div id="content">
+    <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="row">
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <div class="jarviswidget" id="wid-id-4">
+
+                    <div>
+                        <div class="jarviswidget-editbox">
+                        </div>
+                        <div class="widget-body">
+                            <ul id="myTab1" class="nav nav-tabs bordered">
+                                <li class="active">
+                                    <a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-pencil"></i>Mail Ayarları</a>
+                                </li>
+                            </ul>
+
+                            <div id="myTabContent1" class="tab-content padding-10">
+                                <div class="tab-pane fade in active" id="s1">
+
+                                    <div class="row">
+                                        <article class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                            <!-- Widget ID (each widget will need unique ID)-->
+                                            <div class="jarviswidget" id="wid-id-3" data-widget-editbutton="false"
+                                                 data-widget-custombutton="false" data-widget-deletebutton="false">
+                                                <header>
+                                                    <span class="widget-icon"> <i class="fa fa-edit"></i> </span>
+                                                    <h2>Mail Bilgileri </h2>
+
+                                                </header>
+
+                                                <!-- widget div-->
+                                                <div>
+
+                                                    <!-- widget edit box -->
+                                                    <div class="jarviswidget-editbox">
+                                                        <!-- This area used as dropdown edit box -->
+
+                                                    </div>
+                                                    <!-- end widget edit box -->
+                                                    <!-- widget content -->
+                                                    <div class="widget-body">
+
+                                                        <form id="order-form" class="smart-form" asp-action="AddMailSetting" asp-controller="Settings">
+                                                            <fieldset>
+                                                                <div class="row">
+                                                                    <section class="col col-lg-6">
+                                                                        <label class="label">Smtp</label>
+                                                                        <label class="input">
+                                                                            @Html.TextBoxFor(m => m.MailSetting.Smtp)
+                                                                        </label>
+                                                                    </section>
+                                                                    <section class="col col-lg-3">
+                                                                        <label class="label">Port</label>
+                                                                        <label class="input">
+                                                                            @Html.TextBoxFor(m => m.MailSetting.Port,new { @type = "number" })
+                                                                        </label>
+                                                                    </section>
+                                                                    <section class="col col-lg-3">
+                                                                        <label class="label">SSL</label>
+                                                                        <label class="checkbox">
+                                                                            @Html.CheckBoxFor(m => m.MailSetting.SSL, new { type = "checkbox" })
+                                                                            <i></i>Aktif
+                                                                        </label>
+                                                                    </section>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <section class="col col-lg-6">
+                                                                        <label class="label">Mail Adresi</label>
+                                                                        <label class="input">
+                                                                            @Html.TextBoxFor(m => m.MailSetting.SendingEmail)
+                                                                        </label>
+                                                                    </section>
+                                                                    <section class="col col-lg-6">
+                                                                        <label class="label">Mail Şifresi</label>
+                                                                        <label class="input">
+                                                                            @Html.TextBoxFor(m => m.MailSetting.Password)
+                                                                        </label>
+                                                                    </section>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <section class="col col-lg-12">
+                                                                        <label class="label">Görünecek İsim</label>
+                                                                        <label class="input">
+                                                                            @Html.TextBoxFor(m => m.MailSetting.DisplayName)
+                                                                        </label>
+                                                                    </section>
+                                                                    @Html.HiddenFor(m => m.MailSetting.Id)
+                                                                </div>
+                                                            </fieldset>
+
+                                                            <footer>
+                                                                <button type="submit" class="btn btn-primary">
+                                                                    Kaydet
+                                                                </button>
+                                                            </footer>
+                                                        </form>
+
+                                                    </div>
+                                                    <!-- end widget content -->
+
+                                                </div>
+                                                <!-- end widget div -->
+
+                                            </div>
+                                            <!-- end widget -->
+                                        </article>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- WIDGET END -->
+        </div>
+        <!-- end row -->
+        <!-- end row -->
+    </section>
+</div>
+

@@ -1,0 +1,179 @@
+﻿@model CustomerIndexViewModel
+@{
+    ViewData["Title"] = "FTSIndex";
+}
+
+<div id="content">
+    <section id="widget-grid" class="">
+        <!-- row -->
+        <div class="row">
+            <!-- NEW WIDGET START -->
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <div class="jarviswidget" id="wid-id-4">
+
+                    <div>
+                        <div class="jarviswidget-editbox">
+                        </div>
+                        <div class="widget-body">
+                            <ul id="myTab1" class="nav nav-tabs bordered">
+                                <li class="active">
+                                    <a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-pencil"></i>Bekleyen Kayıtlar</a>
+                                </li>
+                                <li>
+                                    <a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-pencil"></i>Devam Eden Kayıtlarım</a>
+                                </li>
+                            </ul>
+
+                            <div id="myTabContent1" class="tab-content padding-10">
+                                <div class="tab-pane fade in active" id="s1">
+
+                                    <div class="row">
+                                        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-1" 
+                                                 data-widget-editbutton="false" data-widget-deletebutton="false"
+                                                 data-widget-togglebutton="false" data-widget-sortable="false">
+                                                <header>
+                                                    <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                                                    <h2>Bekleyen Kayıtlar</h2>
+
+                                                </header>
+
+                                                <div>
+                                                    <div class="jarviswidget-editbox">
+                                                    </div>
+                                                    <div class="widget-body no-padding">
+                                                        <table id="dtDataSheetList" class="table table-striped table-bordered" width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th data-class="expand"></th>
+                                                                    <th data-class="expand">Müşteri Adı</th>
+                                                                    <th data-class="expand">Datasheet No</th>
+                                                                    <th data-class="expand">Kayıt Yapan</th>
+                                                                    <th data-class="expand">Kayıt Tarihi</th>
+                                                                    <th data-class="expand">Departman</th>
+                                                                    <th data-class="expand">Ana Müşteri</th>
+                                                                    <th data-class="expand">Model No</th>
+                                                                    <th data-class="expand">Durum</th>
+                                                                    <th data-class="expand">Test Sonucu</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!-- end widget content -->
+                                                </div>
+
+                                                <!-- end widget div -->
+                                            </div>
+
+                                        </article>
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade" id="s2">
+                                    <div class="row">
+                                        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-2" 
+                                                 data-widget-editbutton="false" data-widget-deletebutton="false"
+                                                 data-widget-togglebutton="false" data-widget-sortable="false">
+                                                <header>
+                                                    <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                                                    <h2>Devam Eden Kayıtlarım</h2>
+
+                                                </header>
+
+                                                <div>
+                                                    <div class="jarviswidget-editbox">
+                                                    </div>
+                                                    <div class="widget-body no-padding">
+                                                        <table id="dtDataSheetList2" class="table table-striped table-bordered" width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th data-class="expand"></th>
+                                                                    <th data-class="expand">Datasheet No</th>
+                                                                    <th data-class="expand">Kayıt Yapan</th>
+                                                                    <th data-class="expand">Kayıt Tarihi</th>
+                                                                    <th data-class="expand">Departman</th>
+                                                                    <th data-class="expand">Ana Müşteri</th>
+                                                                    <th data-class="expand">Model No</th>
+                                                                    <th data-class="expand">Durum</th>
+                                                                    <th data-class="expand">Test Sonucu</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach (var item in Model.DataSheetDtos)
+                                                                {
+                                                                    <tr>
+                                                                        <td class="sorting_1"><a href="@Url.Action("DataSheet","DataSheet",new { item.Id })" role="button"><span class="glyphicon glyphicon-pencil"></span></a></td>
+                                                                        <td>@item.DataSheetNumber</td>
+                                                                        <td>@item.CreateUserName</td>
+                                                                        <td>@item.CreateDate</td>
+                                                                        <td>@item.Department</td>
+                                                                        <td>@item.MainCustomer</td>
+                                                                        <td>@item.SampleNumber</td>
+                                                                        <td>@item.Status</td>
+                                                                        <td>@item.TestResult</td>
+                                                                    </tr>
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!-- end widget content -->
+                                                </div>
+
+                                                <!-- end widget div -->
+                                            </div>
+
+                                        </article>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- WIDGET END -->
+        </div>
+        <!-- end row -->
+        <!-- end row -->
+    </section>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        Projen.Client.UI.getDatatable(
+            datatableId = "dtDataSheetList",
+            tablet = 1024,
+            phone = 480,
+            searchButton = true,
+            addnewrowButton = false,
+            newrecurl = "/datasheet/0",
+            showhideButton = "",
+            serverside = true,
+            ajax = "/DataSheet/FTSDataSheetListDataTable",
+            columns = [
+                {
+                    "name": "Id",
+                    'render': function (data) {
+                        return '<a href="' + UrlDuzelt("/datasheet/" + data) + '"  role="button"><span class="glyphicon glyphicon-pencil"></span></a>';
+                    }
+                },
+                { "name": "CustomerName" },
+                { "name": "DataSheetNumber" },
+                { "name": "CreateUserName" },
+                { "name": "CreateDate" },
+                { "name": "Department" },
+                { "name": "MainCustomer" },
+                { "name": "SampleNumber" },
+                { "name": "Status" },
+                { "name": "TestResult" },
+            ]
+        );
+
+        $("#dtDataSheetList2").dataTable();
+    });
+</script>

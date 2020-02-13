@@ -1,0 +1,35 @@
+﻿@model UserForLoginDto
+
+<fieldset>
+    <section>
+        <label class="label">E-posta adresi</label>
+        <label class="input">
+            <i class="icon-append fa fa-user"></i>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Lütfen email adresinizi giriniz.</b>
+        </label>
+    </section>
+    <section>
+        <label class="label">Şifre</label>
+        <label class="input">
+            <i class="icon-append fa fa-lock"></i>
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Şifrenizi Giriniz.</b>
+        </label>
+        <div class="note">
+            <a href="@Url.Action("resetpassword", "auth")"><i class="fa fa-frown-o"></i> Şifremi Unuttum</a>
+            <label class="label">@TempData["LoginErrors"]</label>
+        </div>
+    </section>
+    <section>
+        <label class="checkbox">
+            @Html.CheckBox("Rememberme", true)
+            <i></i>Beni Hatırla
+        </label>
+    </section>
+</fieldset>
+<footer>
+    <button type="submit" class="btn btn-primary">
+        Oturum Aç
+    </button>
+</footer>

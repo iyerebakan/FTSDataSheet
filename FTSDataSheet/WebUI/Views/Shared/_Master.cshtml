@@ -1,0 +1,32 @@
+﻿
+<article class="col-sm-12 col-md-12 col-lg-12">
+    <div>
+        <footer>
+            <ul class="demo-btns pull-right">
+                <li>
+                    <a href="javascript:void(0);" class="btn btn-primary" onclick="$('#mainform').submit();"><i class="fa fa-save"></i> Kaydet</a>
+                </li>
+                @if (Convert.ToInt32(ViewData["Id"]) > 0)
+                {
+                    <li>
+                        <a href="javascript:void(0);" class="btn btn-danger" id="btnDeleteRow">Sil <i class="fa fa-gear"></i></a>
+                    </li>
+                }
+            </ul>
+        </footer>
+    </div>
+</article>
+
+<script type="text/javascript">
+    $("#btnDeleteRow").click(function () {
+        var ans = window.confirm("Kayıt silinecek. İşleme devam etmek istiyor musunuz?");
+        if (ans) {
+            Projen.Server.PostAsync({ Id:@ViewData["Id"] }, "@ViewData["url"]", function (e) {
+                if (e == "")
+                    window.location.href = UrlDuzelt("@ViewData["returnurl"]");
+                else
+                    alert(e);
+            });
+        }
+    });
+</script>

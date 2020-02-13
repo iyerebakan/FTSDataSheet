@@ -1,0 +1,95 @@
+﻿<!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>if (!window.jQuery) { document.write('<script src="/scripts/libs/jquery-2.1.1.min.js"><\/script>'); }</script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script>if (!window.jQuery.ui) { document.write('<script src="/scripts/libs/jquery-ui-1.10.3.min.js"><\/script>'); }</script>
+
+
+<script src="~/js/app.config.js"></script>
+<script src="~/js/plugin/jquery-touch/jquery.ui.touch-punch.min.js"></script>
+<script src="~/js/bootstrap/bootstrap.min.js"></script>
+<script src="~/js/plugin/select2/select2.min.js"></script>
+<script src="~/js/notification/SmartNotification.min.js"></script>
+<script src="~/js/smartwidgets/jarvis.widget.min.js"></script>
+<script src="~/js/plugin/jquery-validate/jquery.validate.min.js"></script>
+<script src="~/js/plugin/jquery-validate/jquery.validate.date.js"></script>
+<script src="~/js/plugin/jquery-validate/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+<script src="~/js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+<script src="~/js/plugin/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<script src="~/js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+<script src="~/js/plugin/fastclick/fastclick.min.js"></script>
+<script src="~/js/app.min.js"></script>
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    <!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+    <script data-pace-options='{ "restartOnRequestAfter": true }' src="~/js/plugin/pace/pace.min.js"></script>
+    <script src="~/js/demo.min.js"></script>
+}
+
+<!-- Voice command : plugin -->
+<script src="~/js/speech/voicecommand.min.js"></script>
+
+
+<!-- SmartChat UI : plugin -->
+<script src="~/js/smart-chat-ui/smart.chat.ui.min.js"></script>
+<script src="~/js/smart-chat-ui/smart.chat.manager.min.js"></script>
+
+
+
+<script src="~/js/plugin/datatables/jquery.dataTables.min.js"></script>
+<script src="~/js/plugin/datatables/dataTables.colVis.min.js"></script>
+<script src="~/js/plugin/datatables/dataTables.tableTools.min.js"></script>
+<script src="~/js/plugin/datatables/dataTables.bootstrap.min.js"></script>
+<script src="~/js/plugin/datatable-responsive/datatables.responsive.min.js"></script>
+
+
+
+<script src="~/js/plugin/jqgrid/jquery.jqGrid.min.js"></script>
+<script src="~/js/plugin/jqgrid/grid.locale-en.min.js"></script>
+
+
+
+<script src="~/js/plugin/jquery-form/jquery-form.min.js"></script>
+
+
+
+<script src="~/js/plugin/easy-pie-chart/jquery.easy-pie-chart.min.js"></script>
+<script src="~/js/plugin/sparkline/jquery.sparkline.min.js"></script>
+<script src="~/js/plugin/morris/morris.min.js"></script>
+<script src="~/js/plugin/morris/raphael.min.js"></script>
+<script src="~/js/plugin/flot/jquery.flot.cust.min.js"></script>
+<script src="~/js/plugin/flot/jquery.flot.resize.min.js"></script>
+<script src="~/js/plugin/flot/jquery.flot.time.min.js"></script>
+<script src="~/js/plugin/flot/jquery.flot.fillbetween.min.js"></script>
+<script src="~/js/plugin/flot/jquery.flot.orderBar.min.js"></script>
+<script src="~/js/plugin/flot/jquery.flot.pie.min.js"></script>
+<script src="~/js/plugin/flot/jquery.flot.tooltip.min.js"></script>
+<script src="~/js/plugin/dygraphs/dygraph-combined.min.js"></script>
+<script src="~/js/plugin/chartjs/chart.min.js"></script>
+
+
+
+
+<script src="~/js/plugin/vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="~/js/plugin/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+
+
+
+<script src="~/js/plugin/moment/moment.min.js"></script>
+<script src="~/js/plugin/fullcalendar/jquery.fullcalendar.min.js"></script>
+
+
+<script src="~/js/AllScripts.js"></script>
+<!-- DO NOT REMOVE : GLOBAL FUNCTIONS! -->
+<script>
+    $(document).ready(function () {
+        pageSetUp();
+    });
+</script>
+
+
+
+

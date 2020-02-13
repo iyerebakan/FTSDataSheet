@@ -1,0 +1,92 @@
+﻿@using WebUI.Extensions
+@model AsideViewModel
+
+<aside id="left-panel">
+    @if (Model.Customer)
+    {
+        <div class="login-info">
+            <span>
+                <a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
+                    <span>@Model.CustomerName</span>
+                </a>
+            </span>
+        </div>
+    }
+
+    <!-- User info -->
+    @{ Html.RenderPartial("_CurrentUser"); }
+
+    <nav>
+
+        <ul>
+            <li class="@Html.RouteIf("index", "active")">
+                <a href="@Url.Action("index", "home")" title="Dashboard">
+                    <i class="fa fa-lg fa-fw fa-home"></i>
+                    <span class="menu-item-parent">AnaSayfa</span>
+                </a>
+            </li>
+
+            <li class="@Html.RouteIf("datasheet", "active")">
+                <a href="#"><i class="fa fa-lg fa-fw fa-pencil-square-o"></i> <span class="menu-item-parent">YKK Data Sheet</span></a>
+                <ul>
+                    <li class="@Html.RouteIf("datasheetlist", "active")">
+                        <a href="@Url.Action("datasheetlist", "datasheet")" title="Dashboard">
+                            <i class="fa fa-lg fa-fw fa-circle-o"></i>
+                            <span class="menu-item-parent">Talep Girişi</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            @if (Model.FTSAdmin)
+            {
+                <li class="@Html.RouteIf("user", "active")">
+                    <a href="#"><i class="fa fa-lg fa-fw fa-users"></i> <span class="menu-item-parent">Kullanıcılar</span></a>
+                    <ul>
+                        <li class="@Html.RouteIf("userlist", "active")">
+                            <a href="@Url.Action("userlist", "user")" title="Dashboard">
+                                <i class="fa fa-lg fa-fw fa-circle-o"></i>
+                                <span class="menu-item-parent">FTS Kullanıcıları</span>
+                            </a>
+                        </li>
+
+                        <li class="@Html.RouteIf("customeruserlist", "active")">
+                            <a href="@Url.Action("customeruserlist", "user")" title="Dashboard">
+                                <i class="fa fa-lg fa-fw fa-circle-o"></i>
+                                <span class="menu-item-parent">Müşteri Kullanıcıları</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="@Html.RouteIf("customer", "active")">
+                    <a href="#"><i class="fa fa-lg fa-fw fa-pencil-square-o"></i> <span class="menu-item-parent">Müşteriler</span></a>
+                    <ul>
+                        <li class="@Html.RouteIf("customerlist", "active")">
+                            <a href="@Url.Action("customerlist", "customer")" title="Dashboard">
+                                <i class="fa fa-lg fa-fw fa-circle-o"></i>
+                                <span class="menu-item-parent">Müşteriler</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="@Html.RouteIf("settings", "active")">
+                    <a href="#"><i class="fa fa-lg fa-fw fa-pencil-square-o"></i> <span class="menu-item-parent">Ayarlar</span></a>
+                    <ul>
+                        <li class="@Html.RouteIf("settings", "active")">
+                            <a href="@Url.Action("settings", "settings")" title="Dashboard">
+                                <i class="fa fa-lg fa-fw fa-circle-o"></i>
+                                <span class="menu-item-parent">Ayarlar</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            }
+
+        </ul>
+    </nav>
+
+</aside>
+<!-- END NAVIGATION -->

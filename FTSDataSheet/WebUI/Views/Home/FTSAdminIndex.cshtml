@@ -1,0 +1,481 @@
+﻿@model FTSAdminIndexViewModel
+@{
+    ViewData["Title"] = "FTSAdminIndex";
+}
+
+<div id="content">
+    <section id="widget-grid" class="">
+        <div class="row">
+
+            <article class="col-xs-12 col-sm-6 col-lg-6 sortable-grid ui-sortable">
+                <div class="jarviswidget" id="wid-id-7" data-widget-colorbutton="false" data-widget-fullscreenbutton="false"
+                     data-widget-editbutton="false" data-widget-sortable="false" data-widget-deletebutton="false">
+                    <header>
+                        <h2>YILLIK - AYLIK DATA SHEET ADETLERİ </h2>
+                    </header>
+                    <div>
+                        <div class="jarviswidget-editbox">
+                            <input class="form-control" type="text">
+                        </div>
+                        <div class="widget-body">
+                            <canvas id="barChart" height="120"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="col-xs-12 col-sm-6 col-lg-6 sortable-grid ui-sortable">
+                <div class="jarviswidget" id="wid-id-17" data-widget-colorbutton="false" data-widget-fullscreenbutton="false"
+                     data-widget-editbutton="false" data-widget-sortable="false" data-widget-deletebutton="false">
+                    <header>
+                        <h2>DATA SHEET TESLİM SÜRESİ </h2>
+                    </header>
+                    <div>
+                        <div class="jarviswidget-editbox">
+                            <input class="form-control" type="text">
+                        </div>
+                        <div class="widget-body">
+                            <canvas id="barChart2" height="120"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6 sortable-grid ui-sortable">
+                <div class="jarviswidget" id="wid-id-6" data-widget-colorbutton="false" data-widget-fullscreenbutton="false"
+                     data-widget-editbutton="false" data-widget-sortable="false" data-widget-deletebutton="false">
+                    <header>
+                        <h2>İLLERE GÖRE DATA SHEET ADETLERİ</h2>
+                    </header>
+                    <div>
+                        <div class="jarviswidget-editbox">
+                            <input class="form-control" type="text">
+                        </div>
+                        <div class="widget-body">
+                            <canvas id="pieChart" height="120"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6 sortable-grid ui-sortable">
+                <div class="jarviswidget" id="wid-id-16" data-widget-colorbutton="false" data-widget-fullscreenbutton="false"
+                     data-widget-editbutton="false" data-widget-sortable="false" data-widget-deletebutton="false">
+                    <header>
+                        <h2>TOP 5 DATA SHEET MÜŞTERİSİ </h2>
+                    </header>
+                    <div>
+                        <div class="jarviswidget-editbox">
+                            <input class="form-control" type="text">
+                        </div>
+                        <div class="widget-body">
+                            <canvas id="pieChart2" height="120"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="col-sm-12 col-md-12 col-lg-12">
+                <div class="jarviswidget" id="wid-id-4">
+
+                    <div>
+                        <div class="jarviswidget-editbox">
+                        </div>
+                        <div class="widget-body">
+                            <ul id="myTab1" class="nav nav-tabs bordered">
+                                <li class="active">
+                                    <a href="#s1" data-toggle="tab"><i class="fa fa-fw fa-lg fa-pencil"></i>Bekleyen Kayıtlar</a>
+                                </li>
+                                <li>
+                                    <a href="#s2" data-toggle="tab"><i class="fa fa-fw fa-lg fa-pencil"></i>Devam Eden Kayıtlar</a>
+                                </li>
+                                <li>
+                                    <a href="#s3" data-toggle="tab"><i class="fa fa-fw fa-lg fa-file"></i>Tamamlanmış Kayıtlar</a>
+                                </li>
+                            </ul>
+
+                            <div id="myTabContent1" class="tab-content padding-10">
+                                <div class="tab-pane fade in active" id="s1">
+
+                                    <div class="row">
+                                        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-1"
+                                                 data-widget-editbutton="false" data-widget-sortable="false"
+                                                 data-widget-deletebutton="false" data-widget-togglebutton="false">
+                                                <header>
+                                                    <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                                                    <h2>Bekleyen Kayıtlar</h2>
+                                                    <div class="widget-toolbar" role="menu">
+
+                                                        <div class="btn-group">
+                                                            <button class="btn btn-xs btn-success"
+                                                                    type="button" id="btnExport">
+                                                                Excel'e Aktar <i class="fa fa-file"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </header>
+
+                                                <div>
+                                                    <div class="jarviswidget-editbox">
+                                                    </div>
+                                                    <div class="widget-body">
+                                                        <table id="dtDataSheetList" class="table table-striped table-bordered" width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th data-class="expand"></th>
+                                                                    <th data-class="expand">Müşteri Adı</th>
+                                                                    <th data-class="expand">Datasheet No</th>
+                                                                    <th data-class="expand">Kayıt Yapan</th>
+                                                                    <th data-class="expand">Kayıt Tarihi</th>
+                                                                    <th data-class="expand">Departman</th>
+                                                                    <th data-class="expand">Ana Müşteri</th>
+                                                                    <th data-class="expand">Model No</th>
+                                                                    <th data-class="expand">Durum</th>
+                                                                    <th data-class="expand">Test Sonucu</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody></tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!-- end widget content -->
+                                                </div>
+
+                                                <!-- end widget div -->
+                                            </div>
+
+                                        </article>
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade" id="s2">
+                                    <div class="row">
+                                        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-2"
+                                                 data-widget-editbutton="false" data-widget-sortable="false"
+                                                 data-widget-deletebutton="false" data-widget-togglebutton="false">
+                                                <header>
+                                                    <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                                                    <h2>Devam Eden Kayıtlar</h2>
+
+                                                </header>
+
+                                                <div>
+                                                    <div class="jarviswidget-editbox">
+                                                    </div>
+                                                    <div class="widget-body">
+                                                        <table id="dtDataSheetList2" class="table table-striped table-bordered" width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th data-class="expand"></th>
+                                                                    <th data-class="expand">FTSUser</th>
+                                                                    <th data-class="expand">Müşteri Adı</th>
+                                                                    <th data-class="expand">Datasheet No</th>
+                                                                    <th data-class="expand">Kayıt Yapan</th>
+                                                                    <th data-class="expand">Kayıt Tarihi</th>
+                                                                    <th data-class="expand">Departman</th>
+                                                                    <th data-class="expand">Ana Müşteri</th>
+                                                                    <th data-class="expand">Model No</th>
+                                                                    <th data-class="expand">Test Sonucu</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!-- end widget content -->
+                                                </div>
+
+                                                <!-- end widget div -->
+                                            </div>
+
+                                        </article>
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade" id="s3">
+                                    <div class="row">
+                                        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-3"
+                                                 data-widget-editbutton="false" data-widget-deletebutton="false"
+                                                 data-widget-togglebutton="false" data-widget-sortable="false">
+                                                <header>
+                                                    <span class="widget-icon"> <i class="fa fa-table"></i> </span>
+                                                    <h2>Tamamlanmış Kayıtlar</h2>
+
+                                                </header>
+
+                                                <div>
+                                                    <div class="jarviswidget-editbox">
+                                                    </div>
+                                                    <div class="widget-body">
+                                                        <table id="dtDataSheetList3" class="table table-striped table-bordered" width="100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th data-class="expand"></th>
+                                                                    <th data-class="expand">FTSUser</th>
+                                                                    <th data-class="expand">Müşteri Adı</th>
+                                                                    <th data-class="expand">Datasheet No</th>
+                                                                    <th data-class="expand">Kayıt Yapan</th>
+                                                                    <th data-class="expand">Kayıt Tarihi</th>
+                                                                    <th data-class="expand">Departman</th>
+                                                                    <th data-class="expand">Ana Müşteri</th>
+                                                                    <th data-class="expand">Model No</th>
+                                                                    <th data-class="expand">Test Sonucu</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <!-- end widget content -->
+                                                </div>
+
+                                                <!-- end widget div -->
+                                            </div>
+
+                                        </article>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+        </div>
+    </section>
+</div>
+
+<script type="text/javascript">
+
+    var pieData = [];
+    var pieData2 = [];
+    var pieChart;
+    var pieChart2;
+    var pieOptions = {
+        segmentShowStroke: false,
+        segmentStrokeColor: "#fff",
+        segmentStrokeWidth: 1,
+        animateScale: false,
+        responsive: true
+    };
+
+    var barData = [];
+    var barChart;
+    var barOptions = {
+        scaleBeginAtZero: true,
+        scaleShowGridLines: true,
+        scaleGridLineColor: "rgba(0,0,0,.05)",
+        scaleGridLineWidth: 1,
+        barShowStroke: true,
+        barStrokeWidth: 1,
+        barValueSpacing: 5,
+        barDatasetSpacing: 2,
+        responsive: true
+    };
+
+    $(document).ready(function () {
+        $.ajaxSetup({ "async": false });
+        Projen.Client.UI.getDatatable(
+            datatableId = "dtDataSheetList",
+            tablet = 1024,
+            phone = 480,
+            searchButton = true,
+            addnewrowButton = false,
+            newrecurl = "/datasheet/0",
+            showhideButton = "",
+            serverside = true,
+            ajax = "/DataSheet/FTSDataSheetListDataTable",
+            columns = [
+                {
+                    "name": "Id",
+                    'render': function (data) {
+                        return '<a href="' + UrlDuzelt("/datasheet/" + data) + '" role="button"><span class="glyphicon glyphicon-pencil"></span></a>';
+                    }
+                },
+                { "name": "CustomerName" },
+                { "name": "DataSheetNumber" },
+                { "name": "CreateUserName" },
+                { "name": "CreateDate" },
+                { "name": "Department" },
+                { "name": "MainCustomer" },
+                { "name": "SampleNumber" },
+                { "name": "Status" },
+                { "name": "TestResult" },
+            ]
+        );
+
+        Projen.Client.UI.getDatatable(
+            datatableId = "dtDataSheetList2",
+            tablet = 1024,
+            phone = 480,
+            searchButton = true,
+            addnewrowButton = false,
+            newrecurl = "/datasheet/0",
+            showhideButton = "",
+            serverside = true,
+            ajax = "/DataSheet/FTSAdminDataSheetListDataTable?status=1",
+            columns = [
+                {
+                    "name": "Id",
+                    'render': function (data) {
+                        return '<a href="' + UrlDuzelt("/datasheet/" + data) + '"  role="button"><span class="glyphicon glyphicon-pencil"></span></a>';
+                    }
+                },
+                { "name": "FTSUser" },
+                { "name": "CustomerName" },
+                { "name": "DataSheetNumber" },
+                { "name": "CreateUserName" },
+                { "name": "CreateDate" },
+                { "name": "Department" },
+                { "name": "MainCustomer" },
+                { "name": "SampleNumber" },
+                { "name": "TestResult" },
+            ]
+        );
+
+        Projen.Client.UI.getDatatable(
+            datatableId = "dtDataSheetList3",
+            tablet = 1024,
+            phone = 480,
+            searchButton = true,
+            addnewrowButton = false,
+            newrecurl = "/datasheet/0",
+            showhideButton = "",
+            serverside = true,
+            ajax = "/DataSheet/FTSAdminDataSheetListDataTable?status=2",
+            columns = [
+                {
+                    "name": "Id",
+                    'render': function (data) {
+                        return '<a href="' + UrlDuzelt("/datasheet/" + data) + '" role="button"><span class="glyphicon glyphicon-pencil"></span></a>';
+                    }
+                },
+                { "name": "FTSUser" },
+                { "name": "CustomerName" },
+                { "name": "DataSheetNumber" },
+                { "name": "CreateUserName" },
+                { "name": "CreateDate" },
+                { "name": "Department" },
+                { "name": "MainCustomer" },
+                { "name": "SampleNumber" },
+                { "name": "TestResult" },
+            ]
+        );
+
+        Works.PieChart();
+        Works.PieChart2();
+        Works.BarChart();     
+        Works.BarChart2();
+        $.ajaxSetup({ "async": true });
+    });
+
+    var Works = function () {
+        PieChart = function () {
+            Projen.Server.PostAsync("", "/Home/PieChartIndex/", function (data) {
+                if (data.length > 0) {
+                    data.forEach(function (e) {
+                        pieData.push({
+                            value: e.result,
+                            color: e.color,
+                            highlight: e.highlight,
+                            label: e.label
+                        });
+                    });
+                    var ctx = document.getElementById("pieChart").getContext("2d");
+                    pieChart = new Chart(ctx).Pie(pieData, pieOptions);
+                }
+            });
+        },
+        PieChart2 = function () {
+            Projen.Server.PostAsync("", "/Home/PieChartIndexTop5/", function (data) {
+                if (data.length > 0) {
+                    data.forEach(function (e) {
+                        pieData2.push({
+                            value: e.result,
+                            color: e.color,
+                            highlight: e.highlight,
+                            label: e.label
+                        });
+                    });
+                    var ctx = document.getElementById("pieChart2").getContext("2d");
+                    pieChart2 = new Chart(ctx).Pie(pieData2, pieOptions);
+                }
+            });
+        },
+        BarChart = function () {
+            Projen.Server.PostAsync("", "/Home/BarChartIndex/", function (response) {
+                if (response.datas.length > 0) {
+                    var labels = [];
+                    var datas = [];
+                    response.datas.forEach(function (e) {
+                        labels.push(e.name);
+                        datas.push(e.data);
+                    });
+
+                    barData = {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: "My First dataset",
+                                fillColor: response.fillColor,
+                                strokeColor: response.strokeColor,
+                                highlightFill: response.highlightFill,
+                                highlightStroke: response.highlightStroke,
+                                data: datas
+                            }
+                        ]
+                    };
+
+                    var ctx = document.getElementById("barChart").getContext("2d");
+                    barChart = new Chart(ctx).Bar(barData, barOptions);
+                }
+            });
+        },
+        BarChart2 = function () {
+            Projen.Server.PostAsync("", "/Home/BarChartIndexYearly/", function (response) {
+                if (response.datas.length > 0) {
+                    var labels = [];
+                    var datas = [];
+                    response.datas.forEach(function (e) {
+                        labels.push(e.name);
+                        datas.push(e.data);
+                    });
+
+                    barData = {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: "My First dataset",
+                                fillColor: response.fillColor,
+                                strokeColor: response.strokeColor,
+                                highlightFill: response.highlightFill,
+                                highlightStroke: response.highlightStroke,
+                                data: datas
+                            }
+                        ]
+                    };
+
+                    var ctx = document.getElementById("barChart2").getContext("2d");
+                    barChart = new Chart(ctx).Bar(barData, barOptions);
+                }
+            });
+        }
+        return {
+            PieChart: PieChart,
+            PieChart2: PieChart2,
+            BarChart: BarChart,
+            BarChart2: BarChart2
+        }
+    }();
+
+    $("#btnExport").click(function () {
+        window.location.href = UrlDuzelt("/DataSheet/ExportDataSheet?filter=" + $("#dtDataSheetList_filter input")[0].value);
+    });
+</script>
+
