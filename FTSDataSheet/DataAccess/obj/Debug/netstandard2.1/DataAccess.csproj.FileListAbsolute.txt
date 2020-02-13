@@ -50,3 +50,16 @@ C:\Users\ibrahimy\Desktop\FTSDataSheet\DataAccess\obj\Debug\netstandard2.1\DataA
 C:\Users\ibrahimy\Desktop\FTSDataSheet\DataAccess\obj\Debug\netstandard2.1\DataAccess.csproj.CopyComplete
 C:\Users\ibrahimy\Desktop\FTSDataSheet\DataAccess\obj\Debug\netstandard2.1\DataAccess.dll
 C:\Users\ibrahimy\Desktop\FTSDataSheet\DataAccess\obj\Debug\netstandard2.1\DataAccess.pdb
+C:\Projects\FTSDataSheet\FTSDataSheet\DataAccess\bin\Debug\netstandard2.1\DataAccess.deps.json
+C:\Projects\FTSDataSheet\FTSDataSheet\DataAccess\bin\Debug\netstandard2.1\DataAccess.dll
+C:\Projects\FTSDataSheet\FTSDataSheet\DataAccess\bin\Debug\netstandard2.1\DataAccess.pdb
+C:\Projects\FTSDataSheet\FTSDataSheet\DataAccess\bin\Debug\netstandard2.1\Core.dll
+C:\Projects\FTSDataSheet\FTSDataSheet\DataAccess\bin\Debug\netstandard2.1\Entities.dll
+C:\Projects\FTSDataSheet\FTSDataSheet\DataAccess\bin\Debug\netstandard2.1\Core.pdb
+C:\Projects\FTSDataSheet\FTSDataSheet\DataAccess\bin\Debug\netstandard2.1\Entities.pdb
+C:\Projects\FTSDataSheet\FTSDataSheet\DataAccess\obj\Debug\netstandard2.1\DataAccess.csprojAssemblyReference.cache
+C:\Projects\FTSDataSheet\FTSDataSheet\DataAccess\obj\Debug\netstandard2.1\DataAccess.AssemblyInfoInputs.cache
+C:\Projects\FTSDataSheet\FTSDataSheet\DataAccess\obj\Debug\netstandard2.1\DataAccess.AssemblyInfo.cs
+C:\Projects\FTSDataSheet\FTSDataSheet\DataAccess\obj\Debug\netstandard2.1\DataAccess.csproj.CopyComplete
+C:\Projects\FTSDataSheet\FTSDataSheet\DataAccess\obj\Debug\netstandard2.1\DataAccess.dll
+C:\Projects\FTSDataSheet\FTSDataSheet\DataAccess\obj\Debug\netstandard2.1\DataAccess.pdb

@@ -22,3 +22,10 @@ C:\Users\lenovo\source\repos\FTSDataSheet\MailSync\obj\Debug\netstandard2.1\Mail
 C:\Users\lenovo\source\repos\FTSDataSheet\MailSync\obj\Debug\netstandard2.1\MailSync.AssemblyInfo.cs
 C:\Users\lenovo\source\repos\FTSDataSheet\MailSync\obj\Debug\netstandard2.1\MailSync.dll
 C:\Users\lenovo\source\repos\FTSDataSheet\MailSync\obj\Debug\netstandard2.1\MailSync.pdb
+C:\Projects\FTSDataSheet\FTSDataSheet\MailSync\bin\Debug\netstandard2.1\MailSync.deps.json
+C:\Projects\FTSDataSheet\FTSDataSheet\MailSync\bin\Debug\netstandard2.1\MailSync.dll
+C:\Projects\FTSDataSheet\FTSDataSheet\MailSync\bin\Debug\netstandard2.1\MailSync.pdb
+C:\Projects\FTSDataSheet\FTSDataSheet\MailSync\obj\Debug\netstandard2.1\MailSync.AssemblyInfoInputs.cache
+C:\Projects\FTSDataSheet\FTSDataSheet\MailSync\obj\Debug\netstandard2.1\MailSync.AssemblyInfo.cs
+C:\Projects\FTSDataSheet\FTSDataSheet\MailSync\obj\Debug\netstandard2.1\MailSync.dll
+C:\Projects\FTSDataSheet\FTSDataSheet\MailSync\obj\Debug\netstandard2.1\MailSync.pdb

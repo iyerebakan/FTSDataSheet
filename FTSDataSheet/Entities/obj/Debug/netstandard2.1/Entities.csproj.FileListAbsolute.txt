@@ -42,3 +42,14 @@ C:\Users\ibrahimy\Desktop\FTSDataSheet\Entities\obj\Debug\netstandard2.1\Entitie
 C:\Users\ibrahimy\Desktop\FTSDataSheet\Entities\obj\Debug\netstandard2.1\Entities.csproj.CopyComplete
 C:\Users\ibrahimy\Desktop\FTSDataSheet\Entities\obj\Debug\netstandard2.1\Entities.dll
 C:\Users\ibrahimy\Desktop\FTSDataSheet\Entities\obj\Debug\netstandard2.1\Entities.pdb
+C:\Projects\FTSDataSheet\FTSDataSheet\Entities\bin\Debug\netstandard2.1\Entities.deps.json
+C:\Projects\FTSDataSheet\FTSDataSheet\Entities\bin\Debug\netstandard2.1\Entities.dll
+C:\Projects\FTSDataSheet\FTSDataSheet\Entities\bin\Debug\netstandard2.1\Entities.pdb
+C:\Projects\FTSDataSheet\FTSDataSheet\Entities\bin\Debug\netstandard2.1\Core.dll
+C:\Projects\FTSDataSheet\FTSDataSheet\Entities\bin\Debug\netstandard2.1\Core.pdb
+C:\Projects\FTSDataSheet\FTSDataSheet\Entities\obj\Debug\netstandard2.1\Entities.csprojAssemblyReference.cache
+C:\Projects\FTSDataSheet\FTSDataSheet\Entities\obj\Debug\netstandard2.1\Entities.AssemblyInfoInputs.cache
+C:\Projects\FTSDataSheet\FTSDataSheet\Entities\obj\Debug\netstandard2.1\Entities.AssemblyInfo.cs
+C:\Projects\FTSDataSheet\FTSDataSheet\Entities\obj\Debug\netstandard2.1\Entities.csproj.CopyComplete
+C:\Projects\FTSDataSheet\FTSDataSheet\Entities\obj\Debug\netstandard2.1\Entities.dll
+C:\Projects\FTSDataSheet\FTSDataSheet\Entities\obj\Debug\netstandard2.1\Entities.pdb

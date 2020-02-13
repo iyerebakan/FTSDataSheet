@@ -1,0 +1,8 @@
+C:\Projects\FTSDataSheet\FTSDataSheet\Core\bin\Debug\netstandard2.1\Core.deps.json
+C:\Projects\FTSDataSheet\FTSDataSheet\Core\bin\Debug\netstandard2.1\Core.dll
+C:\Projects\FTSDataSheet\FTSDataSheet\Core\bin\Debug\netstandard2.1\Core.pdb
+C:\Projects\FTSDataSheet\FTSDataSheet\Core\obj\Debug\netstandard2.1\Core.csprojAssemblyReference.cache
+C:\Projects\FTSDataSheet\FTSDataSheet\Core\obj\Debug\netstandard2.1\Core.AssemblyInfoInputs.cache
+C:\Projects\FTSDataSheet\FTSDataSheet\Core\obj\Debug\netstandard2.1\Core.AssemblyInfo.cs
+C:\Projects\FTSDataSheet\FTSDataSheet\Core\obj\Debug\netstandard2.1\Core.dll
+C:\Projects\FTSDataSheet\FTSDataSheet\Core\obj\Debug\netstandard2.1\Core.pdb
